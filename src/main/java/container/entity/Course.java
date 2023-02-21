@@ -1,4 +1,4 @@
-package entity;
+package container.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="learning_lib")
-public class LearningLib {
+@Table(name = "course")
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,14 +24,20 @@ public class LearningLib {
 
     private String description;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
+    private List<ScoreReport> scoreReports = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "uni_id",referencedColumnName = "id", nullable = false)
+    @JsonIgnore
+    private University university;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "author_id",referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private User user;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "learningLib")
-    private List<Flashcard> flashcards = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -77,6 +83,22 @@ public class LearningLib {
         this.description = description;
     }
 
+    public List<ScoreReport> getScoreReports() {
+        return scoreReports;
+    }
+
+    public void setScoreReports(List<ScoreReport> scoreReports) {
+        this.scoreReports = scoreReports;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
     public User getUser() {
         return user;
     }
@@ -85,11 +107,11 @@ public class LearningLib {
         this.user = user;
     }
 
-    public List<Flashcard> getFlashcards() {
-        return flashcards;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards = flashcards;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

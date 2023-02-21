@@ -1,11 +1,10 @@
-package entity;
+package container.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "university")
+public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -13,9 +12,9 @@ public class Category {
 
     private String name;
 
-    private Date createdAt;
+    private String location;
 
-    private Date updatedAt;
+    private String image;
 
     public Long getId() {
         return id;
@@ -33,19 +32,19 @@ public class Category {
         this.name = name;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public String getImage() {
+        return image;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setImage(String image) {
+        this.image = image;
     }
 }
