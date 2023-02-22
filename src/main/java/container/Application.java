@@ -14,7 +14,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String home(){
 		return "Hello from spring-boot-docker";
 	}
