@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form action="/login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <br>
+    <input type="submit" value="Login">
+</form>
+<hr>
+<h2>Or login with:</h2>
+<a href="/oauth2/authorization/google">
+    <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png">
+</a>
+</body>
+</html>
